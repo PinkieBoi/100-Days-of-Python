@@ -1,4 +1,4 @@
-city = input("What city did you grow up in?\n")
+city = input("What street did you grow up on?\n")
 pet = input("What is your pet's name?\n")
 band_name = city + " " + pet
 
