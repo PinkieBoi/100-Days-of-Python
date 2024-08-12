@@ -27,4 +27,4 @@ for _ in range(symbols_n):
 
 password = "".join(random.sample(new_password, len(new_password)))
 
-print(password)
+print(f"Your password is:\n\t{password}")
