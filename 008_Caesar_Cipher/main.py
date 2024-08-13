@@ -1,12 +1,12 @@
 import string
 
 alphabet = string.ascii_lowercase * 2
+message = input("Message to encrypt / decrypt:\n")
+mode = int(input("Enter 1 to encrypt or 2 to decrypt\n"))
+key = int(input("Enter your key\n"))
 
 
-def cipher():
-    message = input("Message to encrypt / decrypt:\n")
-    mode = int(input("Enter 1 to encrypt or 2 to decrypt\n"))
-    key = int(input("Enter your key\n"))
+def cipher(message, mode, key):
     output = []
     if mode == 1:
         for letter in message:
@@ -28,4 +28,4 @@ def cipher():
     print(f"Message:  {"".join(output)}")
 
 
-cipher()
+cipher(message, mode, key)
