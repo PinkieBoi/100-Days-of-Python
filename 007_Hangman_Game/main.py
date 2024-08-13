@@ -15,6 +15,8 @@ display = ""
 for letter in word:
     display += "_"
 
+print(lives.logo)
+
 while "_" in display and lives_lost < 6:
     print(lives.lost[lives_lost])
     print(display)
