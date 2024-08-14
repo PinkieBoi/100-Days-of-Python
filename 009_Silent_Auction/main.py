@@ -2,7 +2,7 @@ import os
 import time
 from art import gavel
 
-items = {"Laptop": ["", 0], "Tablet": ["", 0], "Phone": ["", 0]}
+items = {}
 
 
 def place_bid(item):
@@ -18,7 +18,7 @@ def place_bid(item):
 
 
 def display_items():
-    print(f"{gavel}\nItems Available")
+    print(f"{gavel}\nItems Available:")
     for key in items:
         print(key)
     bid = input("\nWhich item would you like to bid on:\n").capitalize()
@@ -39,4 +39,18 @@ def continue_bidding():
         winning_bids()
 
 
+def add_lot():
+    n = int(input("Number of items to auction:\n"))
+    while n > 0:
+        lot = input("Item to auction:\n").capitalize()
+        if input("Is there a minimum bid? [y/N]\n").lower() == "y":
+            min_bid = float(input("Minimum successful bid:\n$"))
+            items[lot] = ["", min_bid]
+        else:
+            items[lot] = ["", 0]
+        n -= 1
+    os.system("clear")
+
+
+add_lot()
 display_items()
