@@ -1,5 +1,4 @@
 import os
-
 import art
 from time import sleep
 
