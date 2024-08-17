@@ -19,12 +19,12 @@ def guess_the_number():
     guesses_remaining = select_difficulty()
     print(f"You have {guesses_remaining} tries.")
 
-    while guesses_remaining > 0 and win == False:
+    while guesses_remaining > 0 and not win:
         guess = int(input("Guess a number:\t"))
         if guess == num:
             print(f"Well Done!  The number was {num}")
             win = True
-        elif guesses_remaining == 0 and win == False:
+        elif guesses_remaining == 0 and not win:
             print(f"Out of guesses.  The number was {num}")
         elif guess > num:
             guesses_remaining -= 1
@@ -41,4 +41,3 @@ def guess_the_number():
 
 
 guess_the_number()
-
