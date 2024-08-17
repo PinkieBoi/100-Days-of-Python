@@ -33,7 +33,7 @@ def check_score(cards):
             score += 10
         else:
             score += n
-    if score > 21 and 11 in cards:
+    if score > 21 and "A" in cards:
         score -= 10
     return score
 
@@ -47,7 +47,7 @@ def gameplay():
         deal_cards("player", 2)
         print(f"Your Cards: {player_cards}\tCurrent Score: {check_score(player_cards)}"
               f"\n\tComputer's first card: {dealer_cards[0]}")
-        while check_score(player_cards) <= 21 and input("Enter 'H' to hit or 'S' to stand").lower() == "h":
+        while check_score(player_cards) <= 21 and input("Enter 'H' to hit or 'S' to stand:  ").lower() == "h":
             os.system("clear")
             deal_cards("player", 1)
             print(logo)
@@ -56,7 +56,7 @@ def gameplay():
         # print(f"Your score: {check_score(player_cards)}\nComputer Score: {check_score(dealer_cards)}")
         while check_score(dealer_cards) <= 17:
             deal_cards("dealer", 1)
-            os.system("clear")
+        os.system("clear")
         print(logo)
         print(f"Your Cards: {player_cards}\tYour Score: {check_score(player_cards)}\n"
               f"Computer Score:\t{check_score(dealer_cards)}")
