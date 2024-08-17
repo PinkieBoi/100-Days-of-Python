@@ -28,6 +28,8 @@ def check_score(cards):
 
 
 def gameplay():
+    computer_cards = []
+    player_cards = []
     os.system("clear")
     if input(f"{logo}\nPlay Blackjack? [Y/n] ").lower() == "n":
         exit()
@@ -61,7 +63,5 @@ def gameplay():
             gameplay()
 
 
-computer_cards = []
-player_cards = []
 gameplay()
 
