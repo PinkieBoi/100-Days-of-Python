@@ -3,25 +3,14 @@ import random
 from art import logo
 
 deck = ["A", 2, 3, 4, 5, 6, 7, 8, 9, 10, "J", "Q", "K"]
-
 dealer_cards = []
 player_cards = []
 
 
 def deal_cards(player, num_cards):
-    if player == "dealer":
-        if num_cards == 1:
-            dealer_cards.append(random.choice(deck))
-        else:
-            dealer_cards.append(random.choice(deck))
-            dealer_cards.append(random.choice(deck))
-
-    else:
-        if num_cards == 1:
-            player_cards.append(random.choice(deck))
-        else:
-            player_cards.append(random.choice(deck))
-            player_cards.append(random.choice(deck))
+    while num_cards > 0:
+        player.append(random.choice(deck))
+        num_cards -= 1
 
 
 def check_score(cards):
@@ -43,19 +32,18 @@ def gameplay():
     if input("Play Blackjack? [Y/n] ").lower() == "n":
         exit()
     else:
-        deal_cards("dealer", 2)
-        deal_cards("player", 2)
+        deal_cards(dealer_cards, 2)
+        deal_cards(player_cards, 2)
         print(f"Your Cards: {player_cards}\tCurrent Score: {check_score(player_cards)}"
               f"\n\tComputer's first card: {dealer_cards[0]}")
         while check_score(player_cards) <= 21 and input("Enter 'H' to hit or 'S' to stand:  ").lower() == "h":
             os.system("clear")
-            deal_cards("player", 1)
+            deal_cards(player_cards, 1)
             print(logo)
             print(f"Your Cards: {player_cards}\tCurrent Score: {check_score(player_cards)}"
                   f"\n\tComputer's first card: {dealer_cards[0]}")
-        # print(f"Your score: {check_score(player_cards)}\nComputer Score: {check_score(dealer_cards)}")
         while check_score(dealer_cards) <= 17:
-            deal_cards("dealer", 1)
+            deal_cards(dealer_cards, 1)
         os.system("clear")
         print(logo)
         print(f"Your Cards: {player_cards}\tYour Score: {check_score(player_cards)}\n"
