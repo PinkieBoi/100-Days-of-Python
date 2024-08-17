@@ -1,5 +1,6 @@
 import os
 import random
+from art import logo
 
 
 def select_difficulty():
@@ -11,9 +12,12 @@ def select_difficulty():
 
 
 def guess_the_number():
-    num = random.randint(0, 100)
-    guesses_remaining = select_difficulty()
+    num = random.randint(1, 100)
     win = False
+
+    print(f"{logo}\nGuess the number between 1 and 100.")
+    guesses_remaining = select_difficulty()
+    print(f"You have {guesses_remaining} tries.")
 
     while guesses_remaining > 0 and win == False:
         guess = int(input("Guess a number:\t"))
@@ -24,10 +28,10 @@ def guess_the_number():
             print(f"Out of guesses.  The number was {num}")
         elif guess > num:
             guesses_remaining -= 1
-            print("Lower.")
+            print(f"Lower.\nYou have {guesses_remaining} more guesses")
         else:
-            print("Higher.")
             guesses_remaining -= 1
+            print(f"Higher.\nYou have {guesses_remaining} more guesses")
 
     if input("Play Again? [Y/n] ").lower() == "n":
         exit()
