@@ -2,7 +2,7 @@ import art
 import coffee_data
 
 
-def user_prompt(resources):
+def user_prompt():
     selection = input("What would you like? (espresso/latte/cappuccino): ").lower()
     if selection == "off":
         exit()
@@ -61,7 +61,7 @@ def coffee_machine():
     current_resources = coffee_data.resources
     available = coffee_data.coffees
     while running:
-        drink = user_prompt(current_resources)
+        drink = user_prompt()
         if drink == "topup":
             current_resources = add_resources(current_resources)
         elif drink == "report":
