@@ -50,9 +50,8 @@ def payment(cost):
 
 def make_coffee(resources, drink):
     new_resources = resources
-    new_resources['water'] -= drink['water']
-    new_resources['coffee'] -= drink['coffee']
-    new_resources['milk'] -= drink['milk']
+    for item in drink:
+        new_resources[item] -= drink[item]
     return new_resources
 
 
@@ -86,3 +85,4 @@ def coffee_machine():
 
 
 coffee_machine()
+
