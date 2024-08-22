@@ -9,6 +9,8 @@ class QuizBrain:
         if response == question.answer:
             self.score += 1
             print("Correct!")
+        else:
+            print("That's wrong.")
         print(f"The correct answer was: {question.answer}\n"
               f"Your current score is {self.score}/{self.asked}")
 
