@@ -2,17 +2,15 @@ from turtle import Turtle
 
 
 class Snake:
+
     def __init__(self):
         self.game_on = True
         self.body = []
-        self.initial_setup()
-        self.head = self.body[0]
-
-    def initial_setup(self):
         for _ in range(0, 3):
             self.add_segment()
         for seg in self.body:
             seg.setx(-(self.body.index(seg) * 10))
+        self.head = self.body[0]
 
     def add_segment(self):
         new_segment = Turtle("square")
