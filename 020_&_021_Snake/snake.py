@@ -30,8 +30,8 @@ class Snake:
 
     def detect_collision_wall(self):
         limit = -300
-        if self.head.ycor() >= 250:
-            self.game_on = False
+        # if self.head.ycor() >= 250:
+        #     self.game_on = False
         for _ in self.head.pos():
             if _ == limit or _ == abs(limit):
                 self.game_on = False
