@@ -31,4 +31,7 @@ while snake.game_on:
         food.spawn_food(snake.body)
         snake.add_segment()
 
+if not snake.game_on:
+    scoreboard.game_over()
+
 win.exitonclick()
