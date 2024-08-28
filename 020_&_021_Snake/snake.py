@@ -24,14 +24,12 @@ class Snake:
         self.body.append(new_segment)
 
     def detect_collision_tail(self):
-        for s in range(3, len(self.body) - 1):
-            if self.head.distance(self.body[s]) < 5:
+        for s in self.body[3:]:
+            if self.head.distance(s) < 5:
                 self.game_on = False
 
     def detect_collision_wall(self):
         limit = -300
-        # if self.head.ycor() >= 250:
-        #     self.game_on = False
         for _ in self.head.pos():
             if _ == limit or _ == abs(limit):
                 self.game_on = False
