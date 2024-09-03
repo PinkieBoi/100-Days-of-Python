@@ -39,14 +39,14 @@ class Ball(Turtle):
         if self.xcor() < -430:
             if left_paddle.ycor() - 40 <= self.ycor() <= left_paddle.ycor() + 40:
                 if 90 < self.heading() > 180:
-                    self.lt(90)
+                    self.lt(random.randint(80, 120))
                 else:
-                    self.rt(90)
+                    self.rt(random.randint(80, 120))
                 self.fd(20)
         if self.xcor() > 430:
             if right_paddle.ycor() - 40 <= self.ycor() <= right_paddle.ycor() + 40:
                 if 0 < self.heading() > 90:
-                    self.rt(90)
+                    self.rt(random.randint(80, 120))
                 else:
-                    self.lt(90)
+                    self.lt(random.randint(80, 120))
                 self.fd(20)
