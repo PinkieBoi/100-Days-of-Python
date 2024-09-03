@@ -8,6 +8,7 @@ win = Screen()
 win.setup(width=1000, height=700)
 win.title("Pong")
 win.bgcolor("black")
+win.tracer(0)
 win.listen()
 board = GameBoard()
 
