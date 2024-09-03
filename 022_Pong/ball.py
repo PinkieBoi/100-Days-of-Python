@@ -37,6 +37,8 @@ class Ball(Turtle):
 
     def paddle_bounce(self, left_paddle, right_paddle):
         if self.xcor() < -430:
+            # Could have used if self.distance(right_paddle) < 40 and self.xcor <= -430
+            # with an or statement to include distance to left paddle
             if left_paddle.ycor() - 40 <= self.ycor() <= left_paddle.ycor() + 40:
                 if 90 < self.heading() > 180:
                     self.lt(random.randint(80, 120))
