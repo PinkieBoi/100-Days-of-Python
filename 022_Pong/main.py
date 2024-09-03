@@ -24,7 +24,7 @@ win.onkeypress(r_paddle.move_down, "Down")
 win.onkeypress(l_paddle.move_up, "w")
 win.onkeypress(l_paddle.move_down, "s")
 
-while score.score1 + score.score2 != 11:
+while score.score1 != 11 or score.score2 != 11:
     ball.reset_ball(score.score1 + score.score2)
     score.display_score(350)
     score.game_on = True
