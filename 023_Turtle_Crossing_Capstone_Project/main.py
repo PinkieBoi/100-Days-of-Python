@@ -31,7 +31,7 @@ while game_on:
 
     # Detect Game Over
     for car in cars.all_cars:
-        if player.distance(car) <= 10 or player.xcor() == car.xcor() and player.distance(car) <= 20:
+        if player.distance(car) <= 20 or player.xcor() == car.xcor() and player.distance(car) <= 20:
             score.game_over()
             game_on = False
 
