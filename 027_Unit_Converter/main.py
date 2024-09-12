@@ -4,8 +4,7 @@ import tkinter
 def unit_conversion():
     value = convert_to_m(float(user_input.get()), f_units.get())
     new_val = convert_from_m(value, t_units.get())
-    new_units = get_units()
-    converted_val["text"] = f"{new_val} {new_units}"
+    converted_val["text"] = f"{new_val} {get_units()}"
 
 
 def convert_to_m(value, units):
