@@ -8,14 +8,14 @@ BLACK = "#000"
 word = {}
 
 try:
-    data = pd.read_csv("words_to_learn.csv")
+    data = pd.read_csv("data/words_to_learn.csv")
     lesson = data.to_dict(orient="records")
 except FileNotFoundError:
-    data = pd.read_csv("es_to_en.csv")
+    data = pd.read_csv("data/es_to_en.csv")
     lesson = data.to_dict(orient="records")
 
 try:
-    correct_words = pd.read_csv("es_learned.csv")
+    correct_words = pd.read_csv("data/es_learned.csv")
     correct_words.to_dict(orient="records")
 except FileNotFoundError:
     correct_words = []
@@ -44,8 +44,8 @@ def correct_word():
     lesson.remove(word)
     l_df = pd.DataFrame(correct_words)
     to_learn = pd.DataFrame(lesson)
-    l_df.to_csv("es_learned.csv", index=False)
-    to_learn.to_csv("words_to_learn.csv", index=False)
+    l_df.to_csv("data/es_learned.csv", index=False)
+    to_learn.to_csv("data/words_to_learn.csv", index=False)
     new_card()
 
 
