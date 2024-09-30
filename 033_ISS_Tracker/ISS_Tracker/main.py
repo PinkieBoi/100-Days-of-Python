@@ -33,9 +33,10 @@ if dt.datetime.today().hour > 12:
     nighttime = requests.get(url="https://api.sunrise-sunset.org/json?", params=params)
     sunset = nighttime.json()["results"]["sunset"].split()[0]
     sunset = sunset.split(":")
-    current_time = [(dt.datetime.today().hour - 12), dt.datetime.today().minute, dt.datetime.today().second]
+    current_time = [(dt.datetime.today().hour - 12), dt.datetime.today().minute]
 
     if current_time[0] < int(sunset[0]):
         send_alert()
     elif current_time[0] == int(sunset[0]) and current_time[1] <= sunset[1]:
         send_alert()
+
