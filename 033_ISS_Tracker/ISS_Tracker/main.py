@@ -24,17 +24,17 @@ params = {
     "lng": -0.152778
 }
 
-# Get nighttime hours
-nighttime = requests.get(url="https://api.sunrise-sunset.org/json?", params=params)
-sunset = nighttime.json()["results"]["sunset"].split()[0]
-sunset = sunset.split(":")
-current_time = [(dt.datetime.today().hour - 12), dt.datetime.today().minute, dt.datetime.today().second]
-
 # Get ISS position
 response = requests.get(url="http://api.open-notify.org/iss-now.json")
 iss_position = response.json()["iss_position"]
 
 if dt.datetime.today().hour > 12:
+    # Get nighttime hours
+    nighttime = requests.get(url="https://api.sunrise-sunset.org/json?", params=params)
+    sunset = nighttime.json()["results"]["sunset"].split()[0]
+    sunset = sunset.split(":")
+    current_time = [(dt.datetime.today().hour - 12), dt.datetime.today().minute, dt.datetime.today().second]
+
     if current_time[0] < int(sunset[0]):
         send_alert()
     elif current_time[0] == int(sunset[0]) and current_time[1] <= sunset[1]:
