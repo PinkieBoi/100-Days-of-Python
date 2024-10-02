@@ -30,7 +30,7 @@ dby_data = data_list[1]
 dby_close = float(dby_data["4. close"])
 pc_change = (abs(y_close - dby_close) / y_close) * 100
 
-if pc_change > 1:
+if pc_change >= 5:
     newsapi_url = "https://newsapi.org/v2/everything"
     newsapi_params = {
         "q": COMPANY_NAME,
