@@ -30,7 +30,7 @@ dby_data = data_list[1]
 dby_close = float(dby_data["4. close"])
 pc_change = (abs(y_close - dby_close) / y_close) * 100
 
-if pc_change >= 5:
+if pc_change >= 1:
     newsapi_url = "https://newsapi.org/v2/everything"
     newsapi_params = {
         "q": COMPANY_NAME,
@@ -50,10 +50,9 @@ if pc_change >= 5:
     stock_change = f"{STOCK} {sign}{round(pc_change, 3)}%"
 
     news_data = requests.get(url=newsapi_url, params=newsapi_params).json()
-    news_item1 = ["...".join([news_data["articles"][0]["title"][:50], news_data["articles"][0]["url"]])]
-    news_item2 = ["...".join([news_data["articles"][1]["title"][:50], news_data["articles"][1]["url"]])]
-    news_item3 = ["...".join([news_data["articles"][2]["title"][:50], news_data["articles"][2]["url"]])]
-    sms_alerts = [stock_change, news_item1, news_item2, news_item3]
+    articles = news_data["articles"][:3]
+    sms_alerts = [f"{item['title'][:50]}, {item['url']}" for item in articles]
+    sms_alerts.insert(0, stock_change)
 
     client = Client(TWILIO_SID, TWILIO_AUTH)
     for _ in sms_alerts:
