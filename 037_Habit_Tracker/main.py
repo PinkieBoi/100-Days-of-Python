@@ -28,7 +28,7 @@ def update_pixel(n):
         url=post_url,
         headers=header,
         json={
-            "quantity": str(int(eval(initial_value.text)["quantity"]) + n)
+            "quantity": str(int(initial_value.json()["quantity"]) + n)
         }
     )
     print(response.text)
