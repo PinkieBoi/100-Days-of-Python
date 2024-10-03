@@ -8,7 +8,6 @@ class FlightSearch:
     def __init__(self):
         self.endpoint = "https://test.api.amadeus.com/v"
         self.token = ""
-        self.airports = ["LHR", "LGW"]
 
         with open(file="env/secrets.json") as secrets:
             data = json.load(secrets)
@@ -44,34 +43,35 @@ class FlightSearch:
         )
         return res.json()
 
-    def get_flight_offers(self, city_code, price):
+    def get_flight_offers(self, city_code, price, duration):
         offers = []
-        for day in range(1, 5):
-            for airport in self.airports:
-                version = 2
-                res = requests.get(
-                    url=f"{self.endpoint}{version}/shopping/flight-offers",
-                    headers={
-                        "Authorization": self.token
-                    },
-                    params={
-                        "originLocationCode": airport,
-                        "destinationLocationCode": city_code,
-                        "departureDate": dt.datetime.strftime(dt.date.today() + dt.timedelta(days=day), "%Y-%m-%d"),
-                        "adults": 1,
-                        "currencyCode": "GBP",
-                        "maxPrice": round(float(price))
-                    }
-                ).json()
-                for deal in res['data']:
-                    offer = {
-                        "lowestPrice": deal['price']['grandTotal'],
-                        "departureIataCode": deal['itineraries'][0]['segments'][0]['departure']['iataCode'],
-                        "destinationIataCode": deal['itineraries'][1]['segments'][0]['departure']['iataCode'],
-                        "departureDate": deal['itineraries'][0]['segments'][0]['departure']['at'],
-                        "returnDate": deal['itineraries'][1]['segments'][0]['departure']['at'],
-                    }
-                    offers.append(offer)
+        for day in range(1, 30):
+            version = 2
+            res = requests.get(
+                url=f"{self.endpoint}{version}/shopping/flight-offers",
+                headers={
+                    "Authorization": self.token
+                },
+                params={
+                    "originLocationCode": "LON",
+                    "destinationLocationCode": city_code,
+                    "departureDate": dt.datetime.strftime(dt.date.today() + dt.timedelta(days=day), "%Y-%m-%d"),
+                    "returnDate": dt.datetime.strftime(dt.date.today() + dt.timedelta(days=(day + duration)), "%Y-%m-%d"),
+                    "adults": 1,
+                    "currencyCode": "GBP",
+                    "nonStop": True,
+                    "maxPrice": round(float(price))
+                }
+            ).json()
+            for deal in res['data']:
+                offer = {
+                    "lowestPrice": deal['price']['grandTotal'],
+                    "departureIataCode": deal['itineraries'][0]['segments'][0]['departure']['iataCode'],
+                    "destinationIataCode": deal['itineraries'][1]['segments'][0]['departure']['iataCode'],
+                    "departureDate": deal['itineraries'][0]['segments'][0]['departure']['at'],
+                    "returnDate": deal['itineraries'][1]['segments'][0]['departure']['at'],
+                }
+                offers.append(offer)
         best_offer = {}
         for offer in offers:
             if len(best_offer) == 0 or float(best_offer['lowestPrice']) > float(offer['lowestPrice']):

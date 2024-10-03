@@ -8,7 +8,7 @@ flight_search.get_oauth_token()
 notifications = NotificationManager()
 
 for city in data_manager.get_sheet()["prices"]:
-    best_deal = flight_search.get_flight_offers(city['iataCode'], city['lowestPrice'])
+    best_deal = flight_search.get_flight_offers(city['iataCode'], city['lowestPrice'], 7)
     if float(city['lowestPrice']) > float(best_deal['lowestPrice']):
         old_price = city['lowestPrice']
         data_manager.edit_sheet(best_deal['lowestPrice'], city['id'])
