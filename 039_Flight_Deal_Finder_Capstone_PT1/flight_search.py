@@ -63,6 +63,8 @@ class FlightSearch:
                     "maxPrice": round(float(price))
                 }
             ).json()
+            print(res)
+            print(type(res))
             for deal in res['data']:
                 offer = {
                     "lowestPrice": deal['price']['grandTotal'],
