@@ -60,13 +60,16 @@ class FlightSearch:
                         "departureDate": dt.datetime.strftime(dt.date.today() + dt.timedelta(days=day), "%Y-%m-%d"),
                         "adults": 1,
                         "currencyCode": "GBP",
-                        # "maxPrice": int(price)
+                        "maxPrice": round(float(price))
                     }
                 ).json()
                 for deal in res['data']:
                     offer = {
-                        "iataCode": city_code,
-                        "lowestPrice": deal['price']['grandTotal']
+                        "lowestPrice": deal['price']['grandTotal'],
+                        "departureIataCode": deal['itineraries'][0]['segments'][0]['departure']['iataCode'],
+                        "destinationIataCode": deal['itineraries'][1]['segments'][0]['departure']['iataCode'],
+                        "departureDate": deal['itineraries'][0]['segments'][0]['departure']['at'],
+                        "returnDate": deal['itineraries'][1]['segments'][0]['departure']['at'],
                     }
                     offers.append(offer)
         best_offer = {}
