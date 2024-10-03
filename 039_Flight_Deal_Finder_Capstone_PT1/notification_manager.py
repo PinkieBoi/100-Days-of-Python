@@ -12,7 +12,13 @@ class NotificationManager:
             self.twilio_num = data['twilio_number']
             self.my_num = data['my_number']
 
-    def send_alert(self, body):
+    def send_alert(self, deal):
+        price = deal["price"]
+        home_airport = deal["departureIataCode"]
+        destination = deal["destinationIataCode"]
+        departure_date = deal["departureDate"].split("T")[0]
+        return_home = deal["returnDate"].split("T")[0]
+        body = f"Low price alert! £{price} from {home_airport} to {destination} on {departure_date} until {return_home}"
         client = Client(self.sid, self.auth)
         message = client.messages.create(
             body=body,

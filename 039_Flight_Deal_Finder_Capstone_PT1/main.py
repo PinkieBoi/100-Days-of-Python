@@ -13,4 +13,4 @@ for city in data_manager.get_sheet()["prices"]:
         old_price = city['lowestPrice']
         data_manager.edit_sheet(best_deal['lowestPrice'], city['id'])
         price_alert = f"Flight to {city['city']} down form £{old_price} to £{best_deal['lowestPrice']}"
-        notifications.send_alert(price_alert)
+        notifications.send_alert(best_deal)
