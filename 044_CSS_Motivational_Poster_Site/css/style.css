@@ -1,0 +1,27 @@
+body {
+  background-color: black;
+}
+
+img {
+  display: block;
+  margin: 20px auto;
+  width: 75%;
+  border: 3px white solid;
+}
+
+h1,
+p {
+  font-family: Ubuntu;
+  color: antiquewhite;
+}
+
+h1 {
+  font-size: 3rem;
+  text-align: center;
+  margin: 10px auto;
+  text-transform: uppercase;
+}
+
+p {
+  text-align: center;
+}

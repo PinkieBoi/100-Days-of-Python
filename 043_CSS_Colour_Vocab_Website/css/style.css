@@ -1,0 +1,31 @@
+body {
+  color: aliceblue;
+  font-family: Ubuntu;
+  background-color: darkslategray;
+}
+
+#red {
+  color: red;
+}
+
+#blue {
+  color: blue;
+}
+
+#orange {
+  color: orange;
+}
+
+#green {
+  color: green;
+}
+
+#yellow {
+  color: yellow;
+}
+
+img {
+  border-radius: 50%;
+  width: 100px;
+  height: 100px;
+}
