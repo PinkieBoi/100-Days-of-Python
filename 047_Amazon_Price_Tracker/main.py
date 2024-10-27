@@ -18,14 +18,9 @@ headers = {"User-Agent": "Mozilla/5.0 (X11; Linux x86_64; rv:131.0) Gecko/201001
 
 response = requests.get(url=item_url, headers=headers)
 soup = BeautifulSoup(response.text, "html.parser")
-price_div = soup.find(id="corePriceDisplay_desktop_feature_div")
+current_price = float(soup.find(class_="a-price-whole").text + soup.find(class_="a-price-fraction").text)
 max_price = 170
 
-current_price = soup.select("#newAccordionRow_0 > div:nth-child(1) > div:nth-child(1) > h5:nth-child(2) > "
-                            "div:nth-child(2) > div:nth-child(1) > div:nth-child(1) > div:nth-child(1) > "
-                            "div:nth-child(1) > div:nth-child(1) > div:nth-child(2) > span:nth-child(1) > "
-                            "span:nth-child(1)")[0].text
-current_price = float(current_price.removeprefix("£"))
 item_name = soup.title.getText().split(":")[0]
 alert_message = f"The {item_name} you are watching on Amazon is now available for £{current_price} \nLink: {item_url}"
 
