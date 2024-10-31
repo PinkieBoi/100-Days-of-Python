@@ -1,14 +1,14 @@
-import time
 from selenium import webdriver
+from selenium.webdriver.common.keys import Keys
 
 
 def page_init():
     driver.find_element("class name", "fc-primary-button").click()
-    time.sleep(2)
+    driver.implicitly_wait(2)
     driver.find_element("class name", "cc_btn_accept_all").click()
-    time.sleep(2)
+    driver.implicitly_wait(2)
     driver.find_element("id", "langSelect-EN").click()
-    time.sleep(2)
+    driver.implicitly_wait(2)
 
 
 chrome_opts = webdriver.ChromeOptions()
@@ -18,11 +18,4 @@ driver.get(url="https://orteil.dashnet.org/cookieclicker/")
 page_init()
 
 cookie = driver.find_element("id", "bigCookie")
-game_aids = driver.find_elements("id", "products")
-
-while True:
-    for item in game_aids[:5]:
-        pass
-    cookie.click()
-
-driver.quit()
+ame_aids = driver.find_elements("class name", "product")
