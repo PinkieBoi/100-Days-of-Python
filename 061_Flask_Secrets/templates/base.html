@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    {{ bootstrap.load_css() }}
+    <meta charset="UTF-8">
+    <title>{% block title %}{% endblock %}</title>
+    <style>
+        {% block styling %}
+        body{
+            font-family: Ubuntu, sans-serif;
+            background: #B7CECE;
+        }
+        {% endblock %}
+    </style>
+</head>
+<body>
+    {% block content %}{% endblock %}
+    {{ bootstrap.load_js() }}
+</body>
+</html>
