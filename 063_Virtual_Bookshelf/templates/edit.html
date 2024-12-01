@@ -1,0 +1,14 @@
+{% extends 'base.html' %}
+{% from 'bootstrap5/form.html' import render_form %}
+{% block title %}Library{% endblock %}
+{% block content %}
+  <h1>{{library.title}}</h1>
+        <p>
+            Author: {{library.author}}
+            <br>
+            Current Rating: {{library.rating * '⭐️'}}
+        </p>
+      {{ render_form(form) }}
+
+  <a href="{{ url_for('add') }}">Add New Book</a>
+{% endblock %}
