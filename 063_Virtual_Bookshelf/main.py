@@ -91,12 +91,6 @@ def edit():
     if request.method == 'POST' and form.validate_on_submit():
         with app.app_context():
             edit_book.rating = form.rating.data
-            # edited_book = Book(
-            #     id=request.args.get('id'),
-            #     title=edit_book.title,
-            #     author=edit_book.author,
-            #     rating=form.rating.data
-            # )
             db.session.add(edit_book)
             db.session.commit()
         return redirect('/')
