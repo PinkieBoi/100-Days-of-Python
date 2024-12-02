@@ -64,7 +64,7 @@ with app.app_context():
 @app.route("/")
 def home():
     with app.app_context():
-        all_films = db.session.execute(db.select(FilmDB).order_by(FilmDB.id.desc())).scalars()
+        all_films = [film for film in db.session.execute(db.select(FilmDB).order_by(FilmDB.rating.desc())).scalars()]
         return render_template(
             "index.html",
             films=all_films
